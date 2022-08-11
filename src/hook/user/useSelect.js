@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux/es/exports";
+import { shallowEqual, useSelector } from "react-redux/es/exports";
 
 function useSelect() {
-  const user = useSelector((state) => state.setUser);
+  const user = useSelector((state) => state.setUser,shallowEqual);
   const userList = user.user;
   const input = user.inputText;
   return { userList, input };
