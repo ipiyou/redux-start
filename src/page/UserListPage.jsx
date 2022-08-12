@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRef } from "react";
 import ButtonElement from "../components/userList/ButtonElement";
 import InputElement from "../components/userList/InputElement";
@@ -8,6 +9,7 @@ import useUser from "../hook/user/useUser";
 function UserListPage() {
   const { userList, input } = useSelect();
   const { idx, add, remove, toggle, change } = useUser();
+
   return (
     <>
       <InputElement value={input} ChangeEvent={change} />

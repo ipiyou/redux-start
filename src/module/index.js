@@ -4,5 +4,4 @@ import setUser from "./userListReducer";
 
 const rootReducer = combineReducers({ setCount, setUser });
 
-
 export default rootReducer;
