@@ -4,9 +4,9 @@ import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer, { thunk } from "./module";
 import App from "./App";
-import ReduxThunk from 'redux-thunk'
+import ReduxThunk from "redux-thunk";
 
-const store = createStore(rootReducer,applyMiddleware(ReduxThunk));
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

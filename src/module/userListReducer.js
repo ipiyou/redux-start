@@ -1,6 +1,7 @@
 import { createAction, createReducer } from "redux-action";
 import { getUsers } from "../apis/user";
-import { handleActions, ThunkPromise,reduxTry } from "../lib/userLoading";
+import { handleActions, ThunkPromise, reduxTry } from "../lib/userLoading";
+import { userOperate } from "../lib/userOperator";
 
 const ADD_USER = "ADD_USER";
 const REMOVE_USER = "REMOVE_USER";
@@ -19,8 +20,8 @@ const initState = {
 export const addUser = ({ Text, id }) => ({
   type: ADD_USER,
   data: {
-    Text,
     id,
+    Text,
     toggle: false,
   },
 });
@@ -35,29 +36,16 @@ const setUser = (state = initState, action) => {
   switch (action.type) {
     case ADD_USER:
       if (state.inputText) {
-        return {
-          ...state,
-          user: state.user.data.concat(action.user),
-          inputText: "",
-        };
+        const user = userOperate.add(state, action);
+        user.inputText = "";
+        return user;
       }
     case REMOVE_USER:
-      return {
-        ...state,
-        user: state.user.data.filter((e) => e.id !== action.id),
-      };
+      return userOperate.remove(state, action);
     case TOGGLE_USER:
-      return {
-        ...state,
-        user: state.user.data.map((e) =>
-          e.id === action.id ? { ...e, toggle: !e.toggle } : e
-        ),
-      };
+      return userOperate.toggle(state, action);
     case CHANGE_TEXT:
-      return {
-        ...state,
-        inputText: action.text,
-      };
+      return userOperate.change(state, action);
     case GET_USERS:
     case GET_USERS_SUCCESS:
     case GET_USERS_ERROR:

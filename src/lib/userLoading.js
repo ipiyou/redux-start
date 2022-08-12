@@ -2,7 +2,7 @@ export const ThunkPromise = (type, promiseAction) => {
   const SUCCESS = `${type}_SUCCESS`;
   const ERROR = `${type}_FAILURE`;
 
-  return () => async dispatch => {
+  return () => async (dispatch) => {
     // 요청 시작
     dispatch({ type });
     try {
@@ -44,7 +44,6 @@ export const handleActions = (type) => {
   return (state, action) => {
     switch (action.type) {
       case type:
-        console.log('로딩')
         return {
           ...state,
           user: reduxTry.loading(),

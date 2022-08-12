@@ -28,7 +28,7 @@ const setCount = (state = initState, action) => {
         count: state.count - 1,
       };
     default:
-        return state
+      return state;
   }
 };
 

@@ -8,7 +8,7 @@ import useUser from "../hook/user/useUser";
 
 function UserListPage() {
   const { userList, input } = useSelect();
-  const { idx, add, remove, toggle, change } = useUser();
+  const { add, remove, toggle, change } = useUser();
 
   return (
     <>
@@ -16,7 +16,7 @@ function UserListPage() {
       <ButtonElement
         display="추가"
         ClickEvent={add}
-        info={{ Text: input, id: idx.current }}
+        info={{ Text: input, id: userList.length + 1 }}
       />
       {userList.map((e) => (
         <UserItem

@@ -1,4 +1,4 @@
-function InputElement({value, ChangeEvent}) {
+function InputElement({ value, ChangeEvent }) {
   return <input value={value} onChange={ChangeEvent} />;
 }
 

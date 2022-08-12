@@ -4,7 +4,7 @@ function useSelect() {
   const user = useSelector((state) => state.setUser, shallowEqual);
   const userList = user.user.data;
   const input = user.inputText;
-  console.log(user)
+  console.log(user);
   return { userList, input };
 }
 
