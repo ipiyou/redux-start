@@ -1,20 +1,13 @@
-import useUserLoad from "./hook/user/useUserLoad";
 import CounterPage from "./page/CounterPage";
 import UserListPage from "./page/UserListPage";
+import { Route,Routes } from "react-router-dom";
 
 function App() {
-  const { loading, error } = useUserLoad();
-
-  const Loading = () => {
-    if (loading) return <div>로딩 중...</div>;
-    if (error) return <div>오류!</div>;
-    return <UserListPage />;
-  };
   return (
-    <>
-      <CounterPage />
-      {Loading()}
-    </>
+    <Routes>
+      <Route path="/Count" element={<CounterPage />} />
+      <Route path="/UserList" element={<UserListPage />} />
+    </Routes>
   );
 }
 
