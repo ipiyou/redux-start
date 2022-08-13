@@ -8,4 +8,4 @@ function FloatButton({ float, Route }) {
   );
 }
 
-export default FloatButton
+export default FloatButton;
