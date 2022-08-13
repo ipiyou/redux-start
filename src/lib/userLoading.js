@@ -42,16 +42,17 @@ export const handleActions = (type) => {
   const SUCCESS = `${type}_SUCCESS`;
   const ERROR = `${type}_FAILURE`;
   return (state, action) => {
+    const Keep = state.user.data.length === 0;
     switch (action.type) {
       case type:
         return {
           ...state,
-          user: reduxTry.loading(),
+          user: Keep ? reduxTry.loading() : state.user,
         };
       case SUCCESS:
         return {
           ...state,
-          user: reduxTry.success(action.payload),
+          user: Keep ? reduxTry.success(action.payload) : state.user,
         };
       case ERROR:
         return {
