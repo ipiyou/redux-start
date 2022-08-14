@@ -2,12 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
-import rootReducer, { thunk } from "./module";
+import rootReducer, { rootsaga, thunk } from "./module";
 import App from "./App";
 import ReduxThunk from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
+import createSagaMiddleware from "redux-saga";
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  applyMiddleware(ReduxThunk, sagaMiddleware)
+);
+
+sagaMiddleware.run(rootsaga);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

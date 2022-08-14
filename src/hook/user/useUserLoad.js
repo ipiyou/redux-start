@@ -3,7 +3,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux/es/exports";
 import { getUser } from "../../module/userListReducer";
 
 const useUserLoad = () => {
-  const { data, loading, error } = useSelector((state) => state.setUser.user,shallowEqual);
+  const { loading, error } = useSelector((state) => state.setUser.user,shallowEqual);
   const dispatch = useDispatch();
 
   useEffect(() => {

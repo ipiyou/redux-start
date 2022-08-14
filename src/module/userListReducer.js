@@ -1,7 +1,7 @@
-import { createAction, createReducer } from "redux-action";
 import { getUsers } from "../apis/user";
-import { handleActions, ThunkPromise, reduxTry } from "../lib/userLoading";
+import { handleActions, UserSaga, reduxTry } from "../lib/userLoading";
 import { userOperate } from "../lib/userOperator";
+import { takeEvery } from "redux-saga/effects";
 
 const ADD_USER = "ADD_USER";
 const REMOVE_USER = "REMOVE_USER";
@@ -29,8 +29,13 @@ export const addUser = ({ Text, id }) => ({
 export const removeUser = (id) => ({ type: REMOVE_USER, id });
 export const toggleUser = (id) => ({ type: TOGGLE_USER, id });
 export const changeText = (text) => ({ type: CHANGE_TEXT, text });
+export const getUser = () => ({type: GET_USERS})
 
-export const getUser = ThunkPromise(GET_USERS, getUsers);
+const getUserSaga = UserSaga(GET_USERS, getUsers);
+
+export function* UserListSaga() {
+  yield takeEvery(GET_USERS,getUserSaga)
+}
 
 const setUser = (state = initState, action) => {
   switch (action.type) {
